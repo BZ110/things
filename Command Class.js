@@ -1,3 +1,6 @@
+// This is used for the Discord API !!!!
+// Does not work on Discord.js, only the Discord API and eris.
+
 export class Command {
     name(name){
         this.itemname = name;
