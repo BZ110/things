@@ -18,8 +18,26 @@ export class Command {
             case 'command':
                 this.typenum = 1;
                  break;
+            case 'button':
+                this.typenum = 2;
+                break;
             case 'string':
                 this.typenum = 3;
+                break;
+            case 'text':
+                this.typenum = 4;
+                break;
+            case 'user':
+                this.typenum = 5;
+                break;
+            case 'role':
+                this.typenum = 6;
+                break;
+            case 'mention':
+                this.typenum = 7;
+                break;
+            case 'channel':
+                this.typenum = 8;
                 break;
             default: throw new Error("You must specify a proper type.");
         }
