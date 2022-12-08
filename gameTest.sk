@@ -1,0 +1,31 @@
+function Game(TeamA: objects, TeamB: objects, SKW: text) :: number:
+    # The first thing we will do is see if the world is loaded.
+    if {SKW} parsed as world is not loaded:
+        return -1
+
+    # We will now check if the teams are valid.
+    if {TeamA::*} is empty or {TeamB::*} is empty:
+        return -1
+    
+    # We will now check if the teams are the same.
+    if {TeamA::*} is {TeamB::*}:
+        return -1
+    
+    # Everything is valid, we will now start the countdown.
+    # We will now set the regional flags.
+    execute console command "rg flag _global_ -w {SKW} -g build allow
+    execute console command "rg flag _global_ -w {SKW} -g pvp allow
+      # We will now send a message to the players.
+      loop {TeamA::*}:
+          send "Game start." to loop-value
+      
+      loop {TeamB:*}:
+          send "Game start." to loop-value
+      # We will now see if someone has left the game.
+on disconnect:
+    loop {TeamA::*}:
+        if loop-player is not online:
+            remove loop-player from {TeamA::*}
+    loop {TeamB::*}:
+        if loop-player is not online:
+            remove loop-player from {TeamB::*}
